@@ -23,3 +23,5 @@ useRouter(app)
 app.listen(8080, () => {
     console.log('success')
 })
+
+module.exports = app
