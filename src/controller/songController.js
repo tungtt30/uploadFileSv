@@ -22,8 +22,12 @@ class SongController {
         var filePathSong = __dirname.split('\\controller')[0] + '\\upload\\' + req.files['song'][0].filename
         var filePathImage = __dirname.split('\\controller')[0] + '\\upload\\' + req.files['image'][0].filename //file path
 
-        console.log(filePathImage, filePathSong)
-        res.sendFile(filePathImage)
+        // console.log(filePathImage, filePathSong)
+
+        res.json({
+            pathSong: filePathSong,
+            pathImage: filePathImage
+        })
 
     }
 
