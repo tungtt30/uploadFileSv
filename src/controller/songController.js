@@ -48,20 +48,22 @@ class SongController {
 
                     await uploadBytes(imageRef, dataImage.buffer, 'base64')
                     await uploadBytes(songRef, dataSong.buffer, 'base64')
-                    const imageURL = await getDownloadURL(imageRef)
-                    const songURL = await getDownloadURL(songRef)
+                    const imageUrl = await getDownloadURL(imageRef)
+                    const songUrl = await getDownloadURL(songRef)
                     const songRepo = new Song({
                         name,
                         singer,
-                        imageUrl: imageURL,
-                        songUrl: songURL
+                        imageUrl,
+                        songUrl
                     })
                     await songRepo.save()
-                    res.redirect('/api/song')
+                    res.json({ status: 'ok', message: 'upload success', data: { name, singer, imageUrl, songUrl } })
                 }
-                else { res.json({ staus: 'false', message: "error audio file upload or file format, support mp3 and m4a", data: { name: '', singer: '', image: '', song: '' } }) }
+                else {
+                    res.json({ status: 'false', message: "error audio file upload or file format, support mp3 and m4a" })
+                }
             } else {
-                res.json({ staus: 'false', message: "error image file upload or file format, support jpg , jpeg and png", data: { name: '', singer: '', image: '', song: '' } })
+                res.json({ status: 'false', message: "error image file upload or file format, support jpg , jpeg and png" })
             }
         } catch (error) {
             res.json({ status: 'error', message: 'bad request' })
