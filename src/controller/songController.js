@@ -61,7 +61,7 @@ class SongController {
                 }
                 else { res.json({ staus: 'false', message: "error audio file upload or file format, support mp3 and m4a", data: { name: '', singer: '', image: '', song: '' } }) }
             } else {
-                res.json({ staus: 'false', message: "error audio file upload or file format, support mp3 and m4a", data: { name: '', singer: '', image: '', song: '' } })
+                res.json({ staus: 'false', message: "error image file upload or file format, support jpg , jpeg and png", data: { name: '', singer: '', image: '', song: '' } })
             }
         } catch (error) {
             res.json({ status: 'error', message: 'bad request' })
