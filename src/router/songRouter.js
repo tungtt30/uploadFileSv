@@ -5,7 +5,7 @@ const router = express.Router();
 
 //------------------------ 
 const multer = require('multer')
-const storage = multer.memoryStorage()
+const storage = multer.memoryStorage() // file in buffer
 const upload = multer({ storage: storage })
 
 

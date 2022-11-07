@@ -19,9 +19,10 @@ const SongSchema = new Schema({
         require: true
     },
     like: {
-        type: Boolean
+        type: Boolean,
+        default: false
     }
 })
 
 
-module.exports = mongoose.model('song', SongSchema)
+module.exports = mongoose.model('Song', SongSchema)
