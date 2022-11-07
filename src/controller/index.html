@@ -8,9 +8,11 @@
   </head>
   <body>
     <form action="/api/song/post" enctype="multipart/form-data" method="POST">
-      <h1>SONG</h1>
+      <h3>Name</h3>
+      <input type="text" name="name" />
+      <h3>SONG</h3>
       <input type="file" name="song" />
-      <h1>IMAGE</h1>
+      <h3>IMAGE</h3>
       <input type="file" name="image" />
       <input type="submit" value="Upload a file" />
     </form>

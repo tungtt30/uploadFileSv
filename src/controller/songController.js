@@ -1,5 +1,8 @@
 
-const fs = require('fs')
+
+const { getStorage, ref, uploadBytes, getDownloadURL } = require("firebase/storage")
+const song = require('../model/Song')
+
 
 
 
@@ -18,22 +21,38 @@ class SongController {
         res.sendFile(__dirname + '/index.html');
     }
 
-    postSong(req, res) {
-        var filePathSong = __dirname.split('\\controller')[0] + '\\upload\\' + req.files['song'][0].filename
-        var filePathImage = __dirname.split('\\controller')[0] + '\\upload\\' + req.files['image'][0].filename //file path
+    async postSong(req, res) {
+        try {
+            const storage = getStorage();
 
-        console.log(__dirname)
-        res.send('hehh')
-        // res.json({
-        //     pathSong: filePathSong,
-        //     pathImage: filePathImage
-        // })
+            const dataImage = req.files.image[0].buffer
+            const dataSong = req.files.song[0].buffer
+
+            const fileName = req.body.name
+
+            const imageRef = ref(storage, `image/${fileName}.jpg`);
+            const songRef = ref(storage, `song/${fileName}.mp3`);
+
+            await uploadBytes(imageRef, dataImage, 'base64')
+            await uploadBytes(songRef, dataSong, 'base64')
+            const imageURL = await getDownloadURL(imageRef)
+            const songURL = await getDownloadURL(songRef)
+
+
+            res.json({
+                status: 'ok',
+                name: fileName,
+                image: imageURL,
+                song: songURL
+            })
+
+        } catch (error) {
+            res.json({ status: 'error' })
+        }
 
     }
 
-    deleteTest(req, res) {
-        // fs.unlinkSync(filePath); //delete file
-    }
+
 
     updateSong(req, res) {
         res.send('update')
