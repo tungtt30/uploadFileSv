@@ -5,6 +5,7 @@ const { connectDB, connectFB } = require('./src/config')
 require('dotenv').config()
 const bodyParser = require('body-parser')
 const useRouter = require('./src/router/router');
+const port = process.env.PORT || 8080
 
 
 
@@ -27,7 +28,7 @@ useRouter(app)
 
 
 // server start
-app.listen(process.env.PORT, () => {
+app.listen(port, () => {
     console.log('server starting...')
 })
 

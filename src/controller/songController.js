@@ -3,9 +3,6 @@
 const { getStorage, ref, uploadBytes, getDownloadURL } = require("firebase/storage")
 const Song = require('../model/Song')
 
-
-
-
 class SongController {
 
 
@@ -24,7 +21,7 @@ class SongController {
     }
 
     getOne(req, res) {
-        res.send('get one')
+
     }
 
     form(req, res) {
@@ -60,13 +57,13 @@ class SongController {
                     res.json({ status: 'ok', message: 'upload success', data: { name, singer, imageUrl, songUrl } })
                 }
                 else {
-                    res.json({ status: 'false', message: "error audio file upload or file format, support mp3 and m4a" })
+                    res.status(400).json({ status: 'false', message: "error audio file upload or file format, support mp3 and m4a" })
                 }
             } else {
-                res.json({ status: 'false', message: "error image file upload or file format, support jpg , jpeg and png" })
+                res.status(400).json({ status: 'false', message: "error image file upload or file format, support jpg , jpeg and png" })
             }
         } catch (error) {
-            res.json({ status: 'error', message: 'bad request' })
+            res.status(403).json({ status: 'error', message: 'bad request' })
         }
     }
 
@@ -75,6 +72,7 @@ class SongController {
     updateSong(req, res) {
         res.send('update')
     }
+
 
     deleteSong(req, res) {
         res.send('delete')

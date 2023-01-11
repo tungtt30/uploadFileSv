@@ -2,9 +2,14 @@
   "name": "mp3be",
   "version": "1.0.0",
   "description": "",
+  "licenses": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tungtt30/uploadFileSv"
+  },
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "echo \"start\" && node index.js",
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
