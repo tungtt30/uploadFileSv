@@ -1,0 +1,10 @@
+{
+   "version": 2,
+   "name": "mp3be",
+   "builds": [
+      { "src": "index.js", "use": "@vercel/node" }
+   ],
+   "routes": [
+      { "src": "/(.*)", "dest": "/index.js" }
+   ]
+}
